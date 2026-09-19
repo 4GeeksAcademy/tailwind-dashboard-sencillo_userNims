@@ -6,29 +6,38 @@
     <title>Creator Analytics Dashboard</title>
     <script src="https://cdn.jsdelivr.net/npm/@tailwindcss/browser@4"></script>
   </head>
-  <body class="min-h-screen bg-slate-100 text-slate-900">
+  <body class="min-h-screen overflow-x-hidden bg-slate-100 text-slate-900">
     <header class="sticky top-0 z-10 border-b border-slate-200 bg-white/95 backdrop-blur">
-      <nav class="mx-auto flex max-w-7xl flex-col gap-4 px-4 py-4 sm:flex-row sm:items-center sm:justify-between lg:px-8" aria-label="Navegación principal">
-        <div>
+      <div class="mx-auto flex max-w-7xl flex-col gap-4 px-4 py-4 lg:px-8">
+        <div class="flex flex-col gap-4 lg:flex-row lg:items-center lg:justify-between">
+          <div>
           <p class="text-sm font-semibold text-indigo-600">Creator Analytics</p>
           <h1 class="text-xl font-bold tracking-tight sm:text-2xl">Panel de rendimiento</h1>
+          </div>
+          <div class="flex flex-col gap-2 sm:flex-row sm:items-center">
+            <label for="period" class="sr-only">Periodo del reporte</label>
+            <select id="period" class="rounded-lg border border-slate-300 bg-white px-3 py-2 text-sm shadow-sm focus:border-indigo-500 focus:outline-none focus:ring-2 focus:ring-indigo-200">
+              <option>Últimos 30 días</option>
+              <option>Últimos 90 días</option>
+              <option>Este año</option>
+            </select>
+            <button type="button" class="rounded-lg bg-indigo-600 px-4 py-2 text-sm font-semibold text-white shadow-sm transition hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:ring-offset-2">
+              Exportar reporte
+            </button>
+          </div>
         </div>
-        <div class="flex flex-col gap-2 sm:flex-row sm:items-center">
-          <label for="period" class="sr-only">Periodo del reporte</label>
-          <select id="period" class="rounded-lg border border-slate-300 bg-white px-3 py-2 text-sm shadow-sm focus:border-indigo-500 focus:outline-none focus:ring-2 focus:ring-indigo-200">
-            <option>Últimos 30 días</option>
-            <option>Últimos 90 días</option>
-            <option>Este año</option>
-          </select>
-          <button type="button" class="rounded-lg bg-indigo-600 px-4 py-2 text-sm font-semibold text-white shadow-sm transition hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:ring-offset-2">
-            Exportar reporte
-          </button>
-        </div>
-      </nav>
+        <nav aria-label="Secciones del dashboard">
+          <ul class="grid gap-2 text-sm font-medium text-slate-600 sm:grid-cols-3 lg:flex lg:gap-6">
+            <li><a href="#kpis" class="block rounded-lg bg-slate-100 px-3 py-2 hover:bg-slate-200 hover:text-slate-950 focus:outline-none focus:ring-2 focus:ring-indigo-500 lg:bg-transparent lg:px-0">KPIs</a></li>
+            <li><a href="#drivers" class="block rounded-lg bg-slate-100 px-3 py-2 hover:bg-slate-200 hover:text-slate-950 focus:outline-none focus:ring-2 focus:ring-indigo-500 lg:bg-transparent lg:px-0">Drivers</a></li>
+            <li><a href="#operativo" class="block rounded-lg bg-slate-100 px-3 py-2 hover:bg-slate-200 hover:text-slate-950 focus:outline-none focus:ring-2 focus:ring-indigo-500 lg:bg-transparent lg:px-0">Operativo</a></li>
+          </ul>
+        </nav>
+      </div>
     </header>
 
     <main class="mx-auto flex max-w-7xl flex-col gap-8 px-4 py-6 sm:py-8 lg:px-8">
-      <section aria-labelledby="kpi-title">
+      <section id="kpis" aria-labelledby="kpi-title">
         <div class="mb-4 flex flex-col gap-1 sm:flex-row sm:items-end sm:justify-between">
           <div>
             <p class="text-sm font-medium text-slate-500">Resumen ejecutivo</p>
@@ -84,7 +93,7 @@
         </div>
       </section>
 
-      <section aria-labelledby="drivers-title">
+      <section id="drivers" aria-labelledby="drivers-title">
         <div class="mb-4">
           <p class="text-sm font-medium text-slate-500">Análisis de causas</p>
           <h2 id="drivers-title" class="text-2xl font-bold tracking-tight">Drivers del resultado</h2>
@@ -171,7 +180,7 @@
         </div>
       </section>
 
-      <section aria-labelledby="operations-title">
+      <section id="operativo" aria-labelledby="operations-title">
         <div class="mb-4">
           <p class="text-sm font-medium text-slate-500">Seguimiento operativo</p>
           <h2 id="operations-title" class="text-2xl font-bold tracking-tight">Detalle y acciones</h2>
@@ -184,29 +193,29 @@
                 <div><h3 class="font-semibold">Tabla de productos</h3><p class="text-sm text-slate-500">Comisiones atribuidas por producto</p></div>
                 <span class="text-sm font-medium text-slate-500">15 % por venta</span>
               </div>
-              <div class="mt-4 overflow-x-auto">
+              <div class="mt-4">
                 <table class="min-w-full text-left text-sm">
                   <caption class="sr-only">Ventas y comisiones por producto</caption>
                   <thead class="border-b border-slate-200 text-xs uppercase tracking-wide text-slate-500">
-                    <tr><th scope="col" class="px-3 py-3 font-semibold">Producto</th><th scope="col" class="px-3 py-3 font-semibold">Precio</th><th scope="col" class="px-3 py-3 font-semibold">Ventas</th><th scope="col" class="px-3 py-3 font-semibold">Comisión</th><th scope="col" class="px-3 py-3 font-semibold">Participación</th></tr>
+                    <tr><th scope="col" class="px-3 py-3 font-semibold">Producto</th><th scope="col" class="hidden px-3 py-3 font-semibold sm:table-cell">Precio</th><th scope="col" class="px-3 py-3 font-semibold">Ventas</th><th scope="col" class="px-3 py-3 font-semibold">Comisión</th><th scope="col" class="hidden px-3 py-3 font-semibold md:table-cell">Participación</th></tr>
                   </thead>
                   <tbody class="divide-y divide-slate-100">
-                    <tr><th scope="row" class="whitespace-nowrap px-3 py-3 font-medium">Producto A</th><td class="whitespace-nowrap px-3 py-3">€50</td><td class="px-3 py-3">86</td><td class="px-3 py-3">€645</td><td class="px-3 py-3">30,9 %</td></tr>
-                    <tr><th scope="row" class="whitespace-nowrap px-3 py-3 font-medium">Producto B</th><td class="whitespace-nowrap px-3 py-3">€120</td><td class="px-3 py-3">42</td><td class="px-3 py-3">€756</td><td class="px-3 py-3">36,3 %</td></tr>
-                    <tr><th scope="row" class="whitespace-nowrap px-3 py-3 font-medium">Producto C</th><td class="whitespace-nowrap px-3 py-3">€80</td><td class="px-3 py-3">57</td><td class="px-3 py-3">€684</td><td class="px-3 py-3">32,8 %</td></tr>
+                    <tr><th scope="row" class="px-3 py-3 font-medium">Producto A</th><td class="hidden px-3 py-3 sm:table-cell">€50</td><td class="px-3 py-3">86</td><td class="px-3 py-3">€645</td><td class="hidden px-3 py-3 md:table-cell">30,9 %</td></tr>
+                    <tr><th scope="row" class="px-3 py-3 font-medium">Producto B</th><td class="hidden px-3 py-3 sm:table-cell">€120</td><td class="px-3 py-3">42</td><td class="px-3 py-3">€756</td><td class="hidden px-3 py-3 md:table-cell">36,3 %</td></tr>
+                    <tr><th scope="row" class="px-3 py-3 font-medium">Producto C</th><td class="hidden px-3 py-3 sm:table-cell">€80</td><td class="px-3 py-3">57</td><td class="px-3 py-3">€684</td><td class="hidden px-3 py-3 md:table-cell">32,8 %</td></tr>
                   </tbody>
-                  <tfoot class="border-t border-slate-200 font-semibold"><tr><th scope="row" class="px-3 py-3">Total</th><td class="px-3 py-3">—</td><td class="px-3 py-3">185</td><td class="px-3 py-3">€2.085</td><td class="px-3 py-3">100 %</td></tr></tfoot>
+                  <tfoot class="border-t border-slate-200 font-semibold"><tr><th scope="row" class="px-3 py-3">Total</th><td class="hidden px-3 py-3 sm:table-cell">—</td><td class="px-3 py-3">185</td><td class="px-3 py-3">€2.085</td><td class="hidden px-3 py-3 md:table-cell">100 %</td></tr></tfoot>
                 </table>
               </div>
             </article>
 
             <article class="rounded-2xl border border-slate-200 bg-white p-5 shadow-sm">
               <div><h3 class="font-semibold">Tabla de plataformas</h3><p class="text-sm text-slate-500">Comparación para decidir dónde concentrar esfuerzos</p></div>
-              <div class="mt-4 overflow-x-auto">
+              <div class="mt-4">
                 <table class="min-w-full text-left text-sm">
                   <caption class="sr-only">Alcance y rendimiento por plataforma</caption>
-                  <thead class="border-b border-slate-200 text-xs uppercase tracking-wide text-slate-500"><tr><th scope="col" class="px-3 py-3 font-semibold">Plataforma</th><th scope="col" class="px-3 py-3 font-semibold">Alcance</th><th scope="col" class="px-3 py-3 font-semibold">Engagement</th><th scope="col" class="px-3 py-3 font-semibold">Ventas</th><th scope="col" class="px-3 py-3 font-semibold">ROI</th></tr></thead>
-                  <tbody class="divide-y divide-slate-100"><tr><th scope="row" class="px-3 py-3 font-medium">Instagram</th><td class="px-3 py-3">210.000</td><td class="px-3 py-3">7,1 %</td><td class="px-3 py-3">92</td><td class="px-3 py-3 font-semibold text-emerald-700">245 %</td></tr><tr><th scope="row" class="px-3 py-3 font-medium">TikTok</th><td class="px-3 py-3">145.000</td><td class="px-3 py-3">6,0 %</td><td class="px-3 py-3">61</td><td class="px-3 py-3 font-semibold text-emerald-700">147 %</td></tr><tr><th scope="row" class="px-3 py-3 font-medium">YouTube</th><td class="px-3 py-3">70.000</td><td class="px-3 py-3">4,2 %</td><td class="px-3 py-3">32</td><td class="px-3 py-3 font-semibold text-emerald-700">127 %</td></tr></tbody>
+                  <thead class="border-b border-slate-200 text-xs uppercase tracking-wide text-slate-500"><tr><th scope="col" class="px-3 py-3 font-semibold">Plataforma</th><th scope="col" class="hidden px-3 py-3 font-semibold sm:table-cell">Alcance</th><th scope="col" class="hidden px-3 py-3 font-semibold md:table-cell">Engagement</th><th scope="col" class="px-3 py-3 font-semibold">Ventas</th><th scope="col" class="px-3 py-3 font-semibold">ROI</th></tr></thead>
+                  <tbody class="divide-y divide-slate-100"><tr><th scope="row" class="px-3 py-3 font-medium">Instagram</th><td class="hidden px-3 py-3 sm:table-cell">210.000</td><td class="hidden px-3 py-3 md:table-cell">7,1 %</td><td class="px-3 py-3">92</td><td class="px-3 py-3 font-semibold text-emerald-700">245 %</td></tr><tr><th scope="row" class="px-3 py-3 font-medium">TikTok</th><td class="hidden px-3 py-3 sm:table-cell">145.000</td><td class="hidden px-3 py-3 md:table-cell">6,0 %</td><td class="px-3 py-3">61</td><td class="px-3 py-3 font-semibold text-emerald-700">147 %</td></tr><tr><th scope="row" class="px-3 py-3 font-medium">YouTube</th><td class="hidden px-3 py-3 sm:table-cell">70.000</td><td class="hidden px-3 py-3 md:table-cell">4,2 %</td><td class="px-3 py-3">32</td><td class="px-3 py-3 font-semibold text-emerald-700">127 %</td></tr></tbody>
                 </table>
               </div>
             </article>
